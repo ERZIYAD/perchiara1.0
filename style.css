@@ -1,0 +1,469 @@
+/* =====================================================
+   SEMPRE QUI ❤️
+   Creato da Ziyad esclusivamente per Chiara
+===================================================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:"Poppins",sans-serif;
+
+background:
+linear-gradient(
+180deg,
+#09090b,
+#121218,
+#1b1420
+);
+
+color:white;
+
+min-height:100vh;
+
+overflow-x:hidden;
+
+position:relative;
+
+}
+
+/* ----------------------------- */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:-50%;
+
+left:-50%;
+
+width:200%;
+
+height:200%;
+
+background:
+
+radial-gradient(circle,#ff5fa230 0%,transparent 40%),
+
+radial-gradient(circle,#ff89c930 0%,transparent 45%),
+
+radial-gradient(circle,#ff4d9430 0%,transparent 35%);
+
+animation:backgroundMove 18s linear infinite;
+
+z-index:-2;
+
+}
+
+/* ----------------------------- */
+
+@keyframes backgroundMove{
+
+0%{
+
+transform:rotate(0deg);
+
+}
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* ----------------------------- */
+
+#app{
+
+display:none;
+
+padding:25px;
+
+max-width:480px;
+
+margin:auto;
+
+animation:fadeIn 1s;
+
+}
+
+/* ----------------------------- */
+
+header{
+
+text-align:center;
+
+margin-top:40px;
+
+margin-bottom:35px;
+
+}
+
+/* ----------------------------- */
+
+header h1{
+
+font-size:40px;
+
+font-weight:700;
+
+color:#ff84bb;
+
+margin-bottom:12px;
+
+}
+
+/* ----------------------------- */
+
+header p{
+
+font-size:18px;
+
+line-height:1.6;
+
+color:#dddddd;
+
+}
+
+/* ----------------------------- */
+
+.cards{
+
+display:grid;
+
+gap:18px;
+
+}
+
+/* ----------------------------- */
+
+.card{
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.10);
+
+border-radius:28px;
+
+padding:22px;
+
+cursor:pointer;
+
+transition:.35s;
+
+box-shadow:
+
+0 10px 30px rgba(0,0,0,.35);
+
+}
+
+/* ----------------------------- */
+
+.card:hover{
+
+transform:
+
+translateY(-4px)
+
+scale(1.02);
+
+background:
+
+rgba(255,95,162,.18);
+
+}
+
+/* ----------------------------- */
+
+.card h2{
+
+margin-top:10px;
+
+font-size:24px;
+
+font-weight:600;
+
+}
+
+/* ----------------------------- */
+
+.card p{
+
+margin-top:8px;
+
+font-size:15px;
+
+color:#d7d7d7;
+
+line-height:1.5;
+
+}
+/* ===========================
+   SPLASH SCREEN
+=========================== */
+
+#splash{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100vh;
+
+background:
+linear-gradient(
+180deg,
+#08080b,
+#120f18,
+#1a1322
+);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+z-index:9999;
+
+animation:
+fadeSplash 3s forwards;
+
+}
+
+@keyframes fadeSplash{
+
+0%{
+
+opacity:1;
+
+}
+
+80%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:0;
+visibility:hidden;
+
+}
+
+}
+
+/* =========================== */
+
+.heart{
+
+font-size:90px;
+
+animation:
+heartBeat 1.8s infinite;
+
+filter:
+
+drop-shadow(
+0 0 20px
+#ff5fa2
+);
+
+}
+
+/* =========================== */
+
+@keyframes heartBeat{
+
+0%{
+
+transform:scale(1);
+
+}
+
+25%{
+
+transform:scale(1.15);
+
+}
+
+50%{
+
+transform:scale(.95);
+
+}
+
+75%{
+
+transform:scale(1.1);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+/* =========================== */
+
+#splash h1{
+
+font-size:42px;
+
+margin-top:20px;
+
+color:#ff84bb;
+
+font-weight:700;
+
+}
+
+/* =========================== */
+
+#splash p{
+
+margin-top:18px;
+
+text-align:center;
+
+line-height:1.7;
+
+font-size:18px;
+
+color:#eeeeee;
+
+padding:0 25px;
+
+}
+
+/* =========================== */
+
+#splash span{
+
+margin-top:30px;
+
+font-size:15px;
+
+color:#ffb8d6
+  // ===================================
+// SEMPRE QUI ❤️
+// Creato da Ziyad esclusivamente per Chiara
+// ===================================
+
+// Splash Screen
+window.addEventListener("load", () => {
+
+    const splash = document.getElementById("splash");
+    const app = document.getElementById("app");
+
+    setTimeout(() => {
+
+        splash.style.display = "none";
+        app.style.display = "block";
+
+    },3000);
+
+});
+
+// ================================
+// APRI INSTAGRAM
+// ================================
+
+const talk = document.getElementById("talk");
+
+if(talk){
+
+talk.onclick = () => {
+
+window.open(
+"https://instagram.com/ziyadrbx59",
+"_blank"
+);
+
+};
+
+}
+
+// ================================
+// CARD ANIMATION
+// ================================
+
+document.querySelectorAll(".card").forEach(card=>{
+
+card.addEventListener("click",()=>{
+
+card.animate([
+
+{
+transform:"scale(1)"
+},
+
+{
+transform:"scale(.96)"
+},
+
+{
+transform:"scale(1)"
+}
+
+],{
+
+duration:180
+
+});
+
+});
+
+});
+
+// ================================
+// FRASE DEL GIORNO
+// ================================
+
+const quotes=[
+
+"Anche oggi sono fiero di te ❤️",
+
+"Respira. Un passo alla volta.",
+
+"Non sei sola.",
+
+"Ti voglio un bene infinito.",
+
+"Sei molto più forte di quanto credi.",
+
+"Ci sono sempre per te."
+
+];
+
+const randomQuote=
+
+quotes[
+Math.floor(
+Math.random()*quotes.length
+)
+];
+
+console.log(randomQuote);

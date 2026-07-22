@@ -386,3 +386,27 @@ document.querySelectorAll(".card").forEach(card=>{
     });
 
 });
+// ============================================
+// REGISTRA SERVICE WORKER
+// ============================================
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(() => {
+
+                console.log("Service Worker registrato!");
+
+            })
+            .catch(error => {
+
+                console.log(error);
+
+            });
+
+    });
+
+}

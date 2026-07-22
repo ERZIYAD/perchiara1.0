@@ -1,412 +1,300 @@
-// ============================================
+// ==========================================
 // SEMPRE QUI ❤️
 // Creato da Ziyad esclusivamente per Chiara
-// Versione 1.0
-// ============================================
+// ==========================================
 
-// -------------------------------
-// CONFIGURAZIONE
-// -------------------------------
-
+// Configurazione
 const APP = {
-
     instagram: "https://instagram.com/ziyadrbx59",
-
     relationshipDate: new Date("2026-07-19T22:34:00")
-
 };
 
-// -------------------------------
-// AVVIO APP
-// -------------------------------
-
-window.addEventListener("load", () => {
-
-    startSplash();
-
+// Avvio
+window.addEventListener("DOMContentLoaded", () => {
+    showSplash();
     connectButtons();
-
-    startLoveTimer();
-
-    startFloatingHearts();
-
+    updateLoveTimer();
+    setInterval(updateLoveTimer, 1000);
+    showDailyQuote();
 });
 
-// -------------------------------
-// SPLASH SCREEN
-// -------------------------------
+// Splash Screen
+function showSplash() {
 
-function startSplash(){
+    const splash = document.getElementById("splash");
+    const app = document.getElementById("app");
 
-    const splash=document.getElementById("splash");
+    if (!splash || !app) return;
 
-    const app=document.getElementById("app");
+    app.style.display = "none";
 
-    if(!splash || !app) return;
+    setTimeout(() => {
 
-    setTimeout(()=>{
+        splash.style.opacity = "0";
 
-        splash.style.opacity="0";
+        setTimeout(() => {
 
-        setTimeout(()=>{
+            splash.style.display = "none";
+            app.style.display = "block";
 
-            splash.style.display="none";
+        }, 800);
 
-            app.style.display="block";
-
-        },800);
-
-    },3000);
+    }, 3000);
 
 }
 
-// -------------------------------
-// COLLEGAMENTO PULSANTI
-// -------------------------------
+// Pulsante Instagram
+function connectButtons() {
 
-function connectButtons(){
+    const talk = document.getElementById("talk");
 
-    const talk=document.getElementById("talk");
+    if (!talk) return;
 
-    if(talk){
+    talk.addEventListener("click", () => {
 
-        talk.addEventListener("click",()=>{
+        window.open(APP.instagram, "_blank");
 
-            window.open(APP.instagram,"_blank");
-
-        });
-
-    }
+    });
 
 }
+// ==========================================
+// CONTATORE DEL TEMPO INSIEME ❤️
+// ==========================================
 
-// -------------------------------
-// CONTATORE AMORE
-// -------------------------------
+function updateLoveTimer() {
 
-function startLoveTimer(){
+    const timer = document.getElementById("loveTimer");
 
-    updateLoveTimer();
+    if (!timer) return;
 
-    setInterval(updateLoveTimer,1000);
+    const now = new Date();
 
-}
+    const diff = now - APP.relationshipDate;
 
-function updateLoveTimer(){
+    if (diff < 0) {
 
-    const timer=document.getElementById("loveTimer");
-
-    if(!timer) return;
-
-    const now=new Date();
-
-    const diff=now-APP.relationshipDate;
-
-    if(diff<0){
-
-        timer.innerHTML="Sta per iniziare ❤️";
+        timer.innerHTML = "Il nostro viaggio sta per iniziare ❤️";
 
         return;
 
     }
 
-    const days=Math.floor(diff/86400000);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-    const hours=Math.floor(diff/3600000)%24;
+    const hours = Math.floor(
+        (diff / (1000 * 60 * 60)) % 24
+    );
 
-    const minutes=Math.floor(diff/60000)%60;
+    const minutes = Math.floor(
+        (diff / (1000 * 60)) % 60
+    );
 
-    const seconds=Math.floor(diff/1000)%60;
+    const seconds = Math.floor(
+        (diff / 1000) % 60
+    );
 
-    timer.innerHTML=
+    timer.innerHTML =
     `${days} giorni<br>${hours}h ${minutes}m ${seconds}s`;
 
 }
-// ============================================
-// CUORI CHE VOLANO ❤️
-// ============================================
 
-function startFloatingHearts(){
+// ==========================================
+// FRASE DEL GIORNO ❤️
+// ==========================================
 
-    setInterval(createHeart,900);
+const quotes = [
 
-}
+    "Respira. Io sono sempre con te. ❤️",
 
-function createHeart(){
+    "Sei più forte di quanto credi.",
 
-    const heart=document.createElement("div");
+    "Non sei sola.",
 
-    heart.innerHTML="❤";
+    "Un passo alla volta.",
 
-    heart.style.position="fixed";
+    "Ogni giorno insieme è un regalo.",
 
-    heart.style.left=Math.random()*100+"vw";
+    "Sono fiero di te.",
 
-    heart.style.top="105vh";
+    "Il tuo sorriso illumina il mio mondo.",
 
-    heart.style.fontSize=(18+Math.random()*20)+"px";
+    "Ti voglio un bene infinito.",
 
-    heart.style.opacity=".18";
-
-    heart.style.pointerEvents="none";
-
-    heart.style.zIndex="999";
-
-    heart.style.transition="transform 8s linear, opacity 8s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{
-
-        heart.style.transform=
-        `translateY(-120vh) rotate(${Math.random()*360}deg)`;
-
-        heart.style.opacity="0";
-
-    },50);
-
-    setTimeout(()=>{
-
-        heart.remove();
-
-    },8500);
-
-}
-
-// ============================================
-// FRASE DEL GIORNO
-// ============================================
-
-const dailyQuotes=[
-
-"Respira. Ci sono sempre. ❤️",
-
-"Anche oggi sono fiero di te.",
-
-"Sei più forte di quanto pensi.",
-
-"Non sei sola.",
-
-"Ti voglio un bene infinito.",
-
-"Un passo alla volta.",
-
-"Ogni giorno insieme è un regalo.",
-
-"Il tuo sorriso vale tantissimo.",
-
-"Sei importante.",
-
-"Grazie di esistere ❤️"
+    "Anche oggi ce la farai ❤️"
 
 ];
 
-function showDailyQuote(){
+function showDailyQuote() {
 
-    const random=
+    const quote = document.getElementById("dailyQuote");
 
-    dailyQuotes[
-    Math.floor(
-    Math.random()*dailyQuotes.length
-    )
-    ];
+    if (!quote) return;
 
-    const header=document.querySelector("header p");
+    const random =
+        quotes[Math.floor(Math.random() * quotes.length)];
 
-    if(header){
+    quote.innerHTML = random;
 
-        header.innerHTML=random;
+}
+// ==========================================
+// CUORI ANIMATI ❤️
+// ==========================================
 
-    }
+function startHearts() {
+
+    setInterval(createHeart, 1200);
 
 }
 
-showDailyQuote();
+function createHeart() {
 
-// ============================================
-// EFFETTO CLICK CARD
-// ============================================
+    const heart = document.createElement("div");
 
-document.querySelectorAll(".card").forEach(card=>{
+    heart.className = "floating-heart";
 
-    card.addEventListener("click",()=>{
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.fontSize = (18 + Math.random() * 20) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 9000);
+
+}
+
+startHearts();
+
+// ==========================================
+// EFFETTO CLICK DELLE CARD
+// ==========================================
+
+document.querySelectorAll(".card").forEach(card => {
+
+    card.addEventListener("click", () => {
 
         card.animate([
 
             {
-                transform:"scale(1)"
+                transform: "scale(1)"
             },
 
             {
-                transform:"scale(.96)"
+                transform: "scale(.97)"
             },
 
             {
-                transform:"scale(1)"
+                transform: "scale(1)"
             }
 
-        ],{
+        ], {
 
-            duration:170
+            duration: 180
 
         });
 
     });
 
 });
-// ============================================
-// CUORI CHE VOLANO ❤️
-// ============================================
 
-function startFloatingHearts(){
+// ==========================================
+// RESPIRAZIONE GUIDATA 🌬️
+// ==========================================
 
-    setInterval(createHeart,900);
+const circle = document.getElementById("circle");
+
+if (circle) {
+
+    let grow = true;
+
+    setInterval(() => {
+
+        if (grow) {
+
+            circle.style.transform = "scale(1.3)";
+
+        } else {
+
+            circle.style.transform = "scale(.8)";
+
+        }
+
+        grow = !grow;
+
+    }, 4000);
+
+}
+// ==========================================
+// DIARIO ❤️
+// ==========================================
+
+const diary = document.getElementById("diary");
+
+const saveDiary = document.getElementById("saveDiary");
+
+if (diary) {
+
+    diary.value = localStorage.getItem("semprequi_diary") || "";
 
 }
 
-function createHeart(){
+if (saveDiary) {
 
-    const heart=document.createElement("div");
+    saveDiary.addEventListener("click", () => {
 
-    heart.innerHTML="❤";
+        localStorage.setItem(
+            "semprequi_diary",
+            diary.value
+        );
 
-    heart.style.position="fixed";
+        saveDiary.innerHTML = "✅ Salvato!";
 
-    heart.style.left=Math.random()*100+"vw";
+        setTimeout(() => {
 
-    heart.style.top="105vh";
+            saveDiary.innerHTML = "💾 Salva";
 
-    heart.style.fontSize=(18+Math.random()*20)+"px";
-
-    heart.style.opacity=".18";
-
-    heart.style.pointerEvents="none";
-
-    heart.style.zIndex="999";
-
-    heart.style.transition="transform 8s linear, opacity 8s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{
-
-        heart.style.transform=
-        `translateY(-120vh) rotate(${Math.random()*360}deg)`;
-
-        heart.style.opacity="0";
-
-    },50);
-
-    setTimeout(()=>{
-
-        heart.remove();
-
-    },8500);
-
-}
-
-// ============================================
-// FRASE DEL GIORNO
-// ============================================
-
-const dailyQuotes=[
-
-"Respira. Ci sono sempre. ❤️",
-
-"Anche oggi sono fiero di te.",
-
-"Sei più forte di quanto pensi.",
-
-"Non sei sola.",
-
-"Ti voglio un bene infinito.",
-
-"Un passo alla volta.",
-
-"Ogni giorno insieme è un regalo.",
-
-"Il tuo sorriso vale tantissimo.",
-
-"Sei importante.",
-
-"Grazie di esistere ❤️"
-
-];
-
-function showDailyQuote(){
-
-    const random=
-
-    dailyQuotes[
-    Math.floor(
-    Math.random()*dailyQuotes.length
-    )
-    ];
-
-    const header=document.querySelector("header p");
-
-    if(header){
-
-        header.innerHTML=random;
-
-    }
-
-}
-
-showDailyQuote();
-
-// ============================================
-// EFFETTO CLICK CARD
-// ============================================
-
-document.querySelectorAll(".card").forEach(card=>{
-
-    card.addEventListener("click",()=>{
-
-        card.animate([
-
-            {
-                transform:"scale(1)"
-            },
-
-            {
-                transform:"scale(.96)"
-            },
-
-            {
-                transform:"scale(1)"
-            }
-
-        ],{
-
-            duration:170
-
-        });
-
-    });
-
-});
-// ============================================
-// REGISTRA SERVICE WORKER
-// ============================================
-
-if ("serviceWorker" in navigator) {
-
-    window.addEventListener("load", () => {
-
-        navigator.serviceWorker
-            .register("./service-worker.js")
-            .then(() => {
-
-                console.log("Service Worker registrato!");
-
-            })
-            .catch(error => {
-
-                console.log(error);
-
-            });
+        }, 2000);
 
     });
 
 }
+
+// ==========================================
+// EFFETTO COMPARSA
+// ==========================================
+
+const app = document.getElementById("app");
+
+if (app) {
+
+    app.animate([
+
+        {
+            opacity: 0,
+            transform: "translateY(20px)"
+        },
+
+        {
+            opacity: 1,
+            transform: "translateY(0)"
+        }
+
+    ], {
+
+        duration: 700,
+        fill: "forwards"
+
+    });
+
+}
+
+// ==========================================
+// MESSAGGIO DI BENVENUTO
+// ==========================================
+
+console.log("Sempre Qui ❤️ avviato con successo");
